@@ -1,0 +1,16 @@
+from twilio.rest import Client
+
+def send_sms():
+    account_sid = 'your_account_sid'
+    auth_token = 'your_auth_token'
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        body='Hello from Python!',
+        from_='+1234567890',  # Twilio number
+        to='+919999999999'    # Your phone number
+    )
+
+    print("SMS sent:", message.sid)
+
+send_sms()
