@@ -1,0 +1,15 @@
+import tweepy
+
+def post_tweet():
+    consumer_key = 'your_consumer_key'
+    consumer_secret = 'your_consumer_secret'
+    access_token = 'your_access_token'
+    access_secret = 'your_access_secret'
+
+    auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_secret)
+    api = tweepy.API(auth)
+    
+    api.update_status("Hello Twitter (X) from Python!")
+    print("Tweet posted.")
+
+post_tweet()
