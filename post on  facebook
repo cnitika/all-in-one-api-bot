@@ -1,0 +1,14 @@
+import requests
+
+def post_facebook():
+    access_token = 'your_access_token'
+    page_id = 'your_page_id'
+    message = 'Hello Facebook from Python!'
+
+    url = f"https://graph.facebook.com/{page_id}/feed"
+    params = {'access_token': access_token, 'message': message}
+
+    response = requests.post(url, params=params)
+    print("Facebook Post:", response.status_code, response.text)
+
+post_facebook()
