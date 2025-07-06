@@ -1,0 +1,21 @@
+import requests
+
+def post_linkedin():
+    access_token = 'your_access_token'
+    headers = {'Authorization': f'Bearer {access_token}', 'Content-Type': 'application/json'}
+    post_data = {
+        "author": "urn:li:person:your_person_id",
+        "lifecycleState": "PUBLISHED",
+        "specificContent": {
+            "com.linkedin.ugc.ShareContent": {
+                "shareCommentary": {"text": "Hello LinkedIn from Python!"},
+                "shareMediaCategory": "NONE"
+            }
+        },
+        "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}
+    }
+
+    response = requests.post("https://api.linkedin.com/v2/ugcPosts", json=post_data, headers=headers)
+    print("LinkedIn Post:", response.status_code, response.text)
+
+post_linkedin()
