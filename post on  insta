@@ -1,0 +1,26 @@
+import requests
+
+def post_instagram():
+    access_token = 'your_access_token'
+    page_id = 'your_page_id'
+    image_url = 'https://example.com/image.jpg'
+    caption = 'Hello Instagram from Python!'
+
+    # Step 1: Create Container
+    container_url = f"https://graph.facebook.com/v18.0/{page_id}/media"
+    container_params = {
+        'image_url': image_url,
+        'caption': caption,
+        'access_token': access_token
+    }
+    container_resp = requests.post(container_url, data=container_params)
+    creation_id = container_resp.json().get('id')
+
+    # Step 2: Publish
+    publish_url = f"https://graph.facebook.com/v18.0/{page_id}/media_publish"
+    publish_params = {'creation_id': creation_id, 'access_token': access_token}
+    publish_resp = requests.post(publish_url, data=publish_params)
+
+    print("Instagram Post:", publish_resp.status_code, publish_resp.text)
+
+post_instagram()
