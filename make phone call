@@ -1,0 +1,16 @@
+from twilio.rest import Client
+
+def make_call():
+    account_sid = 'your_account_sid'
+    auth_token = 'your_auth_token'
+    client = Client(account_sid, auth_token)
+
+    call = client.calls.create(
+        url='http://demo.twilio.com/docs/voice.xml',  # TwiML URL
+        to='+919999999999',
+        from_='+1234567890'
+    )
+
+    print("Call initiated:", call.sid)
+
+make_call()
